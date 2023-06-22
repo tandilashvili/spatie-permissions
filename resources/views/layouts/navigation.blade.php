@@ -11,10 +11,42 @@
                 </div>
 
                 <!-- Navigation Links -->
+                
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    {{-- <x-nav-link :href="/users">
+                        {{ __('Users') }}
+                    </x-nav-link>
+                    <x-nav-link :href="/role">
+                        {{ __('Role') }}
+                    </x-nav-link>
+                    <x-nav-link :href="/permission">
+                        {{ __('Permission') }}
+                    </x-nav-link> --}}
+
+                    @can('user:view')
+                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                            {{ __('Users') }}
+                        </x-nav-link>
+                    @endcan
+
+                    @can('role:view')
+                        <x-nav-link :href="route('roles.index')" :active="request()->routeIs('roles.index')">
+                            {{ __('Roles') }}
+                        </x-nav-link>
+                    @endcan
+
+                    @can('permission:view')
+                        <x-nav-link :href="route('permissions.index')" :active="request()->routeIs('permissions.index')">
+                            {{ __('Permissions') }}
+                        </x-nav-link>
+                    @endcan
+                    
+                    {{-- <a href="/users" style="margin-top:21px;">Users</a>
+                    <a href="/roles" style="margin-top:21px;">Roles</a>
+                    <a href="/permissions" style="margin-top:21px;">Permissions</a> --}}
                 </div>
             </div>
 
